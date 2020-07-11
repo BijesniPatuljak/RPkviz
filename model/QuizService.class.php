@@ -223,7 +223,7 @@ function getAllQuestionsByQuizId($id_quiz){
 //ubacuje novo pitanje sa danim quiz_id, rednim_brojem_pitanja, tipom i textom_pitanja i textom_odgovora
 function makeQuestion($id_quiz, $question_number, $answer_input_type, $question_text, $correct_answer_text){
     // Provjeri prvo jel postoji pitanje tog rednog broja u tom kvizu
-		try
+/*		try
 		{
 			$db = DB::getConnection();
 			
@@ -250,7 +250,7 @@ function makeQuestion($id_quiz, $question_number, $answer_input_type, $question_
 		if( $st->rowCount() !== 1 )
 			throw new Exception( 'makeQuestion :: Takvo pitanje vec postoji u kvizu.' ); //error ako je nasao match
     
-
+*/
 	// Ako nas dosad nije izbacio, znaci da ne postoji takvo pitanje u tom kvizu, pa ga ubacujem
 	try
 	{
@@ -258,7 +258,7 @@ function makeQuestion($id_quiz, $question_number, $answer_input_type, $question_
         
 		$st = $db->prepare( 'INSERT INTO kviz_questions(id_quiz, question_number, answer_input_type,  question_text, correct_answer_text) VALUES (:id_quiz, :question_number, :answer_input_type,  :question_text, :correct_answer_text)' );
 
-		$st->execute( array( 'id_quiz' => $id_quiz, 'question_number' => $question_number, 'answer_input_type' => $answer_input_type, ' question_text' => $question_text ,'correct_answer_text' => $correct_answer_text) );
+		$st->execute( array( 'id_quiz' => $id_quiz, 'question_number' => $question_number, 'answer_input_type' => $answer_input_type, 'question_text' => $question_text ,'correct_answer_text' => $correct_answer_text) );
 	}
 	catch( PDOException $e ) { exit( "PDO error [insert kviz_questions]: " . $e->getMessage() ); } //error jer ne moze insertati
 }

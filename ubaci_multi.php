@@ -28,11 +28,11 @@ $pitanja= $qz->getAllQuestionsByQuizId( $kid );
 $brpitanja= (int)count($pitanja)+1;
 $todgovor = "odgovor" . $_POST['numera'];
 $qz->makeQuestion(5, $brpitanja, 'checkbox', $_POST['pitanje'], $_POST[$todgovor]);}
-foreach($pitanja as $pitanje){$qid = $pitanje->id;};
+foreach($pitanja as $pitanje){$qid = $pitanje->id;}
 $qz->makePonudjeniOdgovor($qid, 1, $_POST['odgovor1']);
 $qz->makePonudjeniOdgovor($qid, 2, $_POST['odgovor2']);
-if(isset($_POST['odgovor3'])) $qz->makePonudjeniOdgovor($qid, 3, $_POST['odgovor3']);
-if(isset($_POST['odgovor4'])) $qz->makePonudjeniOdgovor($qid, 4, $_POST['odgovor4']);
+if(isset($_POST['odgovor3']) && $_POST['odgovor3']!='') $qz->makePonudjeniOdgovor($qid, 3, $_POST['odgovor3']);
+if(isset($_POST['odgovor4']) && $_POST['odgovor4']!='') $qz->makePonudjeniOdgovor($qid, 4, $_POST['odgovor4']);
 else{echo "Nije uneseno pitanje i/ili dovoljno dogovora (barem dva)!";}
 
 ?>
